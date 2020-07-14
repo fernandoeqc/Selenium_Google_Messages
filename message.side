@@ -1,0 +1,150 @@
+{
+  "id": "3539064a-0e41-4612-9a5c-e71f338f8bf7",
+  "version": "2.0",
+  "name": "message",
+  "url": "https://messages.google.com",
+  "tests": [{
+    "id": "40274a4f-c538-4d5d-afa7-5540e47c446b",
+    "name": "mess",
+    "commands": [{
+      "id": "f826e7dc-c070-4ab6-88b6-b67bbb1ab588",
+      "comment": "",
+      "command": "open",
+      "target": "/web/conversations",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "d6f27830-c8c4-4300-a10f-b02d202c457d",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1303x768",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "0477f4f8-e8c1-4b43-8e39-999b9f3b19d3",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.fab-label",
+      "targets": [
+        ["css=.fab-label", "css:finder"],
+        ["xpath=//span/div[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "598f7466-aaff-4213-8821-3080f924a8a5",
+      "comment": "",
+      "command": "click",
+      "target": "css=.fab-label",
+      "targets": [
+        ["css=.fab-label", "css:finder"],
+        ["xpath=//span/div[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "045a6353-cac1-4a68-8dd6-26559a0d9ece",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "css=.fab-label",
+      "targets": [
+        ["css=.fab-label", "css:finder"],
+        ["xpath=//span/div[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "26eb75da-c9c4-40e2-a070-fbee7ea3fabb",
+      "comment": "",
+      "command": "click",
+      "target": "css=.input",
+      "targets": [
+        ["css=.input", "css:finder"],
+        ["xpath=//mat-chip-list[@id='mat-chip-list-0']/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "02483e7b-5aa9-497e-9568-2193a287fd29",
+      "comment": "",
+      "command": "type",
+      "target": "css=.input",
+      "targets": [
+        ["css=.input", "css:finder"],
+        ["xpath=//mat-chip-list[@id='mat-chip-list-0']/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "85992341860"
+    }, {
+      "id": "c1f0b4e5-d00a-4da8-969a-503a35a6e5cd",
+      "comment": "",
+      "command": "click",
+      "target": "css=.button .ng-star-inserted:nth-child(2)",
+      "targets": [
+        ["css=.button .ng-star-inserted:nth-child(2)", "css:finder"],
+        ["xpath=//span/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c106db1b-cb1f-42c5-920c-5c415a248710",
+      "comment": "",
+      "command": "runScript",
+      "target": "window.scrollTo(0,0)",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "cde50d90-5653-47fc-8030-58bb4be53638",
+      "comment": "",
+      "command": "click",
+      "target": "css=.input > .input",
+      "targets": [
+        ["css=.input > .input", "css:finder"],
+        ["xpath=//textarea[@type='text']", "xpath:attributes"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "606b1a76-9fea-4966-8f72-4b57d7ba73c3",
+      "comment": "",
+      "command": "runScript",
+      "target": "window.scrollTo(0,0)",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "ddf0ada5-661e-4af9-94e4-fded4903946a",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.floating-button .mat-button-wrapper",
+      "targets": [
+        ["css=.floating-button .mat-button-wrapper", "css:finder"],
+        ["xpath=//mws-message-compose/div/mws-message-send-button/button/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "52c6c133-3ca3-40a7-981c-581dd57f5522",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.conv-header-button-icon > svg",
+      "targets": [
+        ["css=.conv-header-button-icon > svg", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "0c085d01-ecdd-4d7f-afe1-56cf17ca5683",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "css=.conv-header-button-icon > svg",
+      "targets": [
+        ["css=.conv-header-button-icon > svg", "css:finder"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "81901e48-1f65-4c66-8127-45bc5898a478",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["40274a4f-c538-4d5d-afa7-5540e47c446b"]
+  }],
+  "urls": ["https://messages.google.com/"],
+  "plugins": []
+}
