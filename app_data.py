@@ -32,11 +32,12 @@ def edge_drive():
     driver = webdriver.Edge(
         executable_path=caminho + msedge
     )
-    wait = WebDriverWait(driver, 20)
-
+    wait = WebDriverWait(driver, 60)
 
     return driver, wait
 # chrome_drive
 
 driver, wait = edge_drive()
-#print(caminho)
+
+if __name__ == "__main__":
+    driver.close()

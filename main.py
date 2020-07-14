@@ -15,14 +15,18 @@ input("espera")
 def envioCompleto():
     msg_wait = 'msg-info'
     for i in range(10):
-        msg_info = wait.until(
-            EC.presence_of_element_located((By.CLASS_NAME, msg_wait))
-        )
-        
-        if('SMS' not in msg_info.text):
-            print('.',end='')
-        else:
-            return True
+        try:
+            msg_info = wait.until(
+                EC.presence_of_element_located((By.CLASS_NAME, msg_wait))
+            )
+
+            if('SMS' not in msg_info.text):
+                print('.',end='')
+            else:
+                return True
+        except:
+            print('_',end='')
+
     return False
 
 def chat(tel):
@@ -30,42 +34,43 @@ def chat(tel):
     numero_input_class = 'input'
     texto_xpath = '//textarea[@type="text"]'
     
-    #try:
-    novo_chat = wait.until(
-        EC.presence_of_element_located((By.CLASS_NAME, start_chat))
-    )
-    novo_chat.click()
-    #except:
-    print("Selenium:  Novo Chat de " + tel[0])
-    #return False
+    try:
+        novo_chat = wait.until(
+            EC.presence_of_element_located((By.CLASS_NAME, start_chat))
+        )
+        novo_chat.click()
+    except:
+        print("Selenium: Erro Novo Chat de " + tel[0])
+        #return False
 
-    #try:
-    numero_input = wait.until(
-        EC.presence_of_element_located((By.CLASS_NAME, numero_input_class))
-    )
-    numero_input.send_keys(tel[1])
-    numero_input.send_keys(u'\ue007')
-    #except:
-    print("Selenium: colocou numero de " + tel[0])
-    #return False
+    try:
+        numero_input = wait.until(
+            EC.presence_of_element_located((By.CLASS_NAME, numero_input_class))
+        )
+        numero_input.send_keys(tel[1])
+        sleep(0.5)
+        numero_input.send_keys(u'\ue007')
+    except:
+        print("Selenium: Não colocou numero de " + tel[0])
+        #return False
 
-    #try:
-    texto = wait.until(
-        EC.presence_of_element_located((By.XPATH, texto_xpath))
-    )
-    #except:
-    print("Selenium: procurou box txt de " + tel[0])
-    #return False
+    try:
+        texto = wait.until(
+            EC.presence_of_element_located((By.XPATH, texto_xpath))
+        )
+    except:
+        print("Selenium: nao achou box txt de " + tel[0])
+        #return False
 
-    #try:
-    texto.send_keys('Olá ')
-    texto.send_keys(tel[0])
-    texto.send_keys(', Este é um teste do Selenium.')
-    sleep(0.5)
-    texto.send_keys(u'\ue007')
-    #except:
-    print("Selenium:  enviou txt para " + tel[0])
-    #return False
+    try:
+        texto.send_keys('Olá ')
+        texto.send_keys(tel[0])
+        texto.send_keys(', Este é um teste do Selenium.')
+        sleep(0.5)
+        texto.send_keys(u'\ue007')
+    except:
+        print("Selenium: Não enviou txt para " + tel[0])
+        return False
 
     if envioCompleto() == True:
         print("mensagem para " + tel[0] + " completa.")
@@ -90,7 +95,7 @@ tels = entrada_com_txt('entradas.txt')
 
 for tel in tels:
     if(chat(tel) == False):
-        input()
+        input("Mensagem nao enviada. Press pra continuar.")
     
 
 input("FIM")
