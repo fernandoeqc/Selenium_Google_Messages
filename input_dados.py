@@ -14,10 +14,8 @@ def nome_numero(arq):
     for linha in range(len(texto)):
         x = texto[linha].split('	')
         x[0] = x[0].split()[0]
-        #print(x)
-        #y = x.split()[0]
         matriz.append(x)
-        #print(texto[linha].split('	'))
+
     return matriz
 
 def entrada_com_txt(arq):
@@ -31,7 +29,6 @@ def entrada_com_txt(arq):
 
     for linha in range(len(texto)):
         x = texto[linha].split('	')
-        y = x[0].split()[0]
         matriz.append(x)
 
 
@@ -40,16 +37,22 @@ def entrada_com_txt(arq):
 
 if __name__ == "__main__":
     texto = entrada_com_txt('entradas.txt')
+    mensagens = entrada_com_txt('mensagens.txt')
 
-    def printSeparado(): 
-        for linha in texto:
+    def printLinha(arq):
+        for linha in arq:
+            for coluna in linha:
+                print(coluna,end='')
+            input("*")
+
+    def printSeparado(arq): 
+        for linha in arq:
             for coluna in linha:
                 print(coluna)
                 input()
 
             print("**********************************")
     
-    def printJunto():
+    def printJunto(arq):
         print(texto)
     
-    print(nome_numero('entradas.txt'))

@@ -10,9 +10,20 @@ from app_data import driver, wait
 from input_dados import *
 
 
-driver.get('https://messages.google.com/web/authentication')
 
-input("espera")
+def criaMsg(txt):
+    txt_format = ['']
+
+    txt_format.append(txt[0])
+    print(txt_format)
+
+
+
+"""     texto.send_keys('Olá ')
+    texto.send_keys(tel[0])
+    texto.send_keys(', Este é um teste do Selenium.')
+    sleep(0.5)
+    texto.send_keys(u'\ue007') """
 
 def verificaEnvioCompleto():
     msg_wait = 'msg-info'
@@ -32,7 +43,7 @@ def verificaEnvioCompleto():
 
     return False
 
-def chat(tel):
+def chat(tel,msgs):
     start_chat = 'fab-label'
     numero_input_class = 'input'
     texto_xpath = '//textarea[@type="text"]'
@@ -58,7 +69,7 @@ def chat(tel):
         #return False
 
     try:
-        texto = wait.until(
+        campo_txt = wait.until(
             EC.presence_of_element_located((By.XPATH, texto_xpath))
         )
     except:
@@ -66,11 +77,8 @@ def chat(tel):
         #return False
 
     try:
-        texto.send_keys('Olá ')
-        texto.send_keys(tel[0])
-        texto.send_keys(', Este é um teste do Selenium.')
-        sleep(0.5)
-        texto.send_keys(u'\ue007')
+        criaMsg(campo_txt)
+
     except:
         print("Selenium: Não deu enter na mensagem p/ " + tel[0])
         return False
@@ -92,9 +100,9 @@ def chat(tel):
 
 def enviaDeArquivo():
     tels = nome_numero('entradas.txt')
-
+    msgs = entrada_com_txt('mensagens.txt')
     for tel in tels:
-        if(chat(tel) == False):
+        if(chat(tel,msgs) == False):
             input("Mensagem nao enviada. Press pra continuar.")
         
         pausa = random.randrange(2,5)
@@ -102,9 +110,12 @@ def enviaDeArquivo():
         sleep(pausa)
 
 
+driver.get('https://messages.google.com/web/authentication')
+input("espera")
 sleep(5)
 
-enviaDeArquivo()
+#enviaDeArquivo()
+
 
 input("FIM")
 driver.close()

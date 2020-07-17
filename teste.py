@@ -1,7 +1,22 @@
-import os
 import random
+from input_dados import *
 
-nome = 'José Carlos'
+def criaMsg(txt):
+    txt_format = []
 
-print(len(nome.split()[0]))
+    linha = random.randrange(0,len(txt))
 
+    for i in txt[linha]:
+        
+        txt_format 
+
+
+
+
+def enviaDeArquivo():
+    tels = nome_numero('entradas.txt')
+    msgs = entrada_com_txt('mensagens.txt')
+
+    criaMsg(msgs)
+
+enviaDeArquivo()
