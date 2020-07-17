@@ -18,7 +18,17 @@ def nome_numero(arq):
 
     return matriz
 
-def entrada_com_txt(arq):
+def separaLinhas(arq):
+    arquivo = open(arq,'r',encoding='utf8')
+    texto = []
+
+    for linha in arquivo:
+        texto.append(linha)
+    arquivo.close()
+
+    return texto
+
+def separaColunas(arq):
     arquivo = open(arq,'r',encoding='utf8')
     texto = []
     matriz = []
@@ -31,13 +41,11 @@ def entrada_com_txt(arq):
         x = texto[linha].split('	')
         matriz.append(x)
 
-
-
     return matriz
 
 if __name__ == "__main__":
-    texto = entrada_com_txt('entradas.txt')
-    mensagens = entrada_com_txt('mensagens.txt')
+    texto = separaColunas('contatos.txt')
+    mensagens = separaColunas('mensagens.txt')
 
     def printLinha(arq):
         for linha in arq:
@@ -55,4 +63,6 @@ if __name__ == "__main__":
     
     def printJunto(arq):
         print(texto)
+
+    printJunto(texto)
     

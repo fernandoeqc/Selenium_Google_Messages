@@ -28,7 +28,8 @@ def chrome_drive():
 
 def edge_drive():
     msedge = r'\edgedriver_win64\msedgedriver.exe'
-
+    print(caminho + msedge)
+    
     driver = webdriver.Edge(
         executable_path=caminho + msedge
     )

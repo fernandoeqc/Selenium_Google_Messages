@@ -11,12 +11,12 @@ from input_dados import *
 
 
 
-def criaMsg(txt):
-    txt_format = ['']
+def criaMsg(msgs,tel):
+    txt_format = []
+    linha = random.randrange(0, len(msgs) - 1)
 
-    txt_format.append(txt[0])
-    print(txt_format)
-
+    txt_format = msgs[linha].format(tel[0],tel[2])
+    return txt_format
 
 
 """     texto.send_keys('Olá ')
@@ -34,7 +34,7 @@ def verificaEnvioCompleto():
                 EC.presence_of_element_located((By.CLASS_NAME, msg_wait))
             )
 
-            if('SMS' not in msg_info.text):
+            if(('SMS' or 'Entregue' or 'Lido') not in msg_info.text):
                 print('.',end='')
             else:
                 return True
@@ -62,8 +62,8 @@ def chat(tel,msgs):
             EC.presence_of_element_located((By.CLASS_NAME, numero_input_class))
         )
         numero_input.send_keys(tel[1])
-        sleep(0.5)
-        #numero_input.send_keys(u'\ue007')
+        #sleep(0.5)
+        numero_input.send_keys(u'\ue007')
     except:
         print("Selenium: Não colocou numero de " + tel[0])
         #return False
@@ -77,12 +77,16 @@ def chat(tel,msgs):
         #return False
 
     try:
-        criaMsg(campo_txt)
+        txt_format = criaMsg(msgs,tel)
+        campo_txt.send_keys(txt_format)
+        print(txt_format)
+        #campo_txt.send_keys(u'\ue007')
 
     except:
         print("Selenium: Não deu enter na mensagem p/ " + tel[0])
         return False
 
+    print("Verificando ")
     if verificaEnvioCompleto() == True:
         print("mensagem para " + tel[0] + " completa.")
     else:
@@ -99,22 +103,21 @@ def chat(tel,msgs):
     #verificar se msg foi enviada antes de passar pra proxima
 
 def enviaDeArquivo():
-    tels = nome_numero('entradas.txt')
-    msgs = entrada_com_txt('mensagens.txt')
+    tels = nome_numero('contatos.txt')
+    msgs = separaLinhas('mensagens.txt')
     for tel in tels:
         if(chat(tel,msgs) == False):
             input("Mensagem nao enviada. Press pra continuar.")
         
-        pausa = random.randrange(2,5)
-        print("pausa: ",pausa)
-        sleep(pausa)
-
+        espera = random.randrange(30,180)
+        print(espera)
+        sleep(espera)
 
 driver.get('https://messages.google.com/web/authentication')
 input("espera")
 sleep(5)
 
-#enviaDeArquivo()
+enviaDeArquivo()
 
 
 input("FIM")
