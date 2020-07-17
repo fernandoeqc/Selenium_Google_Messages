@@ -7,9 +7,10 @@ NOME | TELEFONE | [outra informação]
 -----|----------|-------------------
 0    |    1     |        2
 
+
 As mensagens são importadas de mensagens.txt.
 A esconha de qual mensagem será enviada é randômica.
-
+As colunas em mensagens e contatos devem ser separadas com tabulação
 
 Requisitos:
 * Biblioteca Selenium instalada
