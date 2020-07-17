@@ -4,17 +4,20 @@ from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import TimeoutException
 from selenium.common.exceptions import WebDriverException
 
+import random
 from time import sleep
 from app_data import driver, wait
 from input_dados import *
+
 
 driver.get('https://messages.google.com/web/authentication')
 
 input("espera")
 
-def envioCompleto():
+def verificaEnvioCompleto():
     msg_wait = 'msg-info'
-    for i in range(10):
+    for i in range(20):
+        sleep(0.5)
         try:
             msg_info = wait.until(
                 EC.presence_of_element_located((By.CLASS_NAME, msg_wait))
@@ -49,7 +52,7 @@ def chat(tel):
         )
         numero_input.send_keys(tel[1])
         sleep(0.5)
-        numero_input.send_keys(u'\ue007')
+        #numero_input.send_keys(u'\ue007')
     except:
         print("Selenium: Não colocou numero de " + tel[0])
         #return False
@@ -69,10 +72,10 @@ def chat(tel):
         sleep(0.5)
         texto.send_keys(u'\ue007')
     except:
-        print("Selenium: Não enviou txt para " + tel[0])
+        print("Selenium: Não deu enter na mensagem p/ " + tel[0])
         return False
 
-    if envioCompleto() == True:
+    if verificaEnvioCompleto() == True:
         print("mensagem para " + tel[0] + " completa.")
     else:
         print("mensagem para " + tel[0] + " não enviada.")
@@ -87,16 +90,21 @@ def chat(tel):
 
     #verificar se msg foi enviada antes de passar pra proxima
 
+def enviaDeArquivo():
+    tels = nome_numero('entradas.txt')
+
+    for tel in tels:
+        if(chat(tel) == False):
+            input("Mensagem nao enviada. Press pra continuar.")
+        
+        pausa = random.randrange(2,5)
+        print("pausa: ",pausa)
+        sleep(pausa)
 
 
 sleep(5)
 
-tels = entrada_com_txt('entradas.txt')
-
-for tel in tels:
-    if(chat(tel) == False):
-        input("Mensagem nao enviada. Press pra continuar.")
-    
+enviaDeArquivo()
 
 input("FIM")
 driver.close()

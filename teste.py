@@ -1,6 +1,7 @@
 import os
+import random
 
-caminho = os.getcwdb()
+nome = 'José Carlos'
 
-print(caminho)
+print(len(nome.split()[0]))
 

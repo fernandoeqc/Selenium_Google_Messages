@@ -2,34 +2,54 @@
 
 #a = open('dados_cliente.txt','r',encoding='utf8')
 
+def nome_numero(arq):
+    arquivo = open(arq,'r',encoding='utf8')
+    texto = []
+    matriz = []
+
+    for linha in arquivo:
+        texto.append(linha)
+    arquivo.close()
+
+    for linha in range(len(texto)):
+        x = texto[linha].split('	')
+        x[0] = x[0].split()[0]
+        #print(x)
+        #y = x.split()[0]
+        matriz.append(x)
+        #print(texto[linha].split('	'))
+    return matriz
+
 def entrada_com_txt(arq):
-    a = open(arq,'r',encoding='utf8')
-    b = []
-    c = []
+    arquivo = open(arq,'r',encoding='utf8')
+    texto = []
+    matriz = []
 
-    for i in a:
-        b.append(i)
-    a.close()
+    for linha in arquivo:
+        texto.append(linha)
+    arquivo.close()
 
-    for i in range(len(b)):
-        c.append(b[i].split('	'))
+    for linha in range(len(texto)):
+        x = texto[linha].split('	')
+        y = x[0].split()[0]
+        matriz.append(x)
 
-    return c
-'''
-     
-'''
-    
+
+
+    return matriz
 
 if __name__ == "__main__":
-    c = entrada_com_txt('entradas.txt')
+    texto = entrada_com_txt('entradas.txt')
 
     def printSeparado(): 
-        for i in range(len(c)):
-            for j in range(len(c[i])):
-                print(c[i][j],'-',j)
+        for linha in texto:
+            for coluna in linha:
+                print(coluna)
+                input()
+
             print("**********************************")
     
     def printJunto():
-        print(c)
+        print(texto)
     
-    printJunto()
+    print(nome_numero('entradas.txt'))
